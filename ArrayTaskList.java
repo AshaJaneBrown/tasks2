@@ -1,9 +1,7 @@
-package ua.edu.sumdu.j2se.Myropolska.Anna.tasks;
+package ua.edu.sumdu.j2se.myropolska.anna.tasks;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class ArrayTaskList extends TaskList {
     public Task[] tasks = new Task[5];
@@ -33,9 +31,7 @@ public class ArrayTaskList extends TaskList {
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
-
     }
-
 
     @Override
     public boolean remove(Task task) {
@@ -51,7 +47,6 @@ public class ArrayTaskList extends TaskList {
             }
         }
         return false;
-
     }
 
     @Override
@@ -71,23 +66,7 @@ public class ArrayTaskList extends TaskList {
             System.out.println("Task does not exist");
         }
         return null;
-
     }
-
-    @Override
-    /*public TaskList createList(Iterable<Task> tasks, Date from, Date to) {
-        TaskList incoming = (TaskList) tasks;
-        for (int i = 0; i < size(); i++) {
-            if (getTask(i).nextTimeAfter(from) != null) {
-                if (to.after(getTask(i).nextTimeAfter(from)))
-                    incoming.add(getTask(i));
-
-            }
-        }
-
-        return incoming;
-    }
-    */
 
    public Iterator<Task> iterator() {
         return new Iterator <Task>() {
@@ -127,7 +106,6 @@ public class ArrayTaskList extends TaskList {
             };
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,8 +119,6 @@ public class ArrayTaskList extends TaskList {
         }
         return isEqual;
     }
-
-
 
     @Override
     public int hashCode() {

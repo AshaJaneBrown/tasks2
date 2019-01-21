@@ -1,4 +1,4 @@
-package ua.edu.sumdu.j2se.Myropolska.Anna.tasks;
+package ua.edu.sumdu.j2se.myropolska.anna.tasks;
 
 import java.util.*;
 
@@ -19,42 +19,31 @@ public class Tasks {
                 }
             return incoming;
         }
+
         public static SortedMap<Date, Set<Task>> calendar(Iterable<Task> tasks, Date start, Date end) throws Exception {
             TreeMap<Date, Set<Task>> calendar = new TreeMap<>();
             Iterable <Task> tasksForCalendar = Tasks.incoming(tasks, start, end);
             System.out.println("incoming " + tasksForCalendar);
             for (Task task : tasksForCalendar) {
                 System.out.println("Calendar " + task.getTitle());
-
-
                 Date time = task.nextTimeAfter(start);
-
                 while(time != null && (time.before(end) || time.equals(end))) {
                     if (calendar.keySet().contains(time)) {
-
                         Set <Task> existingSet = calendar.get(time);
                         existingSet.add(task);
-
                         calendar.put(time, existingSet);
-
                     } else {
-
                         Set <Task> newSet = new HashSet <>();
                         if (time != null) {
                             newSet.add(task);
                         }
                         calendar.put(time, newSet);
-
                     }
                     time = task.nextTimeAfter(time);
                 }
-
             }
-
-
             return calendar;
         }
-
     }
 
 

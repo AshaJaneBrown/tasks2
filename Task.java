@@ -1,10 +1,8 @@
-package ua.edu.sumdu.j2se.Myropolska.Anna.tasks;
+package ua.edu.sumdu.j2se.myropolska.anna.tasks;
 
-
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 public class Task implements Serializable{
     /**
@@ -21,8 +19,6 @@ public class Task implements Serializable{
     private Date start;
     private Date end;
     private Date time;
-
-
 
     public Task(String title, Date time) {
         /**
@@ -73,7 +69,6 @@ public class Task implements Serializable{
                 this.time = time;
                 if (this.isRepeated())
                     this.isRepeated = false;
-
     }
 
     public Date getStartTime() {
@@ -104,7 +99,6 @@ public class Task implements Serializable{
                 this.interval = interval;
                 if (!this.isRepeated())
                     this.isRepeated = true;
-
     }
 
     public boolean isRepeated() {
@@ -127,7 +121,6 @@ public class Task implements Serializable{
                     System.out.println("2");
                     return null;
                 }
-
             } else {
                 if (start.after(current)) {
                     System.out.println("3");
@@ -173,33 +166,28 @@ public class Task implements Serializable{
                          * of the next interval
                          */
                     }
-
                 }
             }
         }
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Task that = (Task) o;
-        if (this.title != that.title)
-            return false;
-        if (this.time.compareTo(that.time) != 0)
-            return false;
-        if (this.isActive != that.isActive)
-            return false;
-        if (this.isRepeated != that.isRepeated)
-            return false;
-        //if (this.start.compareTo(that.start) != 0)
-           // return false;
-        //if (this.end.compareTo(that.end) != 0)
-           // return false;
-        //if (this.interval != that.interval)
-            //return false;
-
-        return true;
+        Task task = (Task) o;
+        boolean rez = false;
+        if (isRepeated == task.isRepeated && !isRepeated) {
+            return Objects.equals(title, task.title) &&
+                    time.equals(task.time) &&
+                    isActive == task.isActive;
+        }
+        else {
+            return Objects.equals(title, task.title) &&
+                    start.equals(task.start) &&
+                    isActive == task.isActive &&
+                    end.equals(task.end) &&
+                    interval == task.interval;
+        }
     }
 
     @Override
